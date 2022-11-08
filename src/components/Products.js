@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React from "react";
 
 
 
 
-function Products( { data } ) {
+
+function Products( { data, loading } ) {
   //   const [products, setProducts] = useState([]);
   //   // console.log(products.filter(product=>product.title.toLowerCase().includes("me")))
   // // const url = 'https://fakestoreapi.com/products?limit=5'
@@ -22,6 +22,9 @@ function Products( { data } ) {
   // }};
   //   fetchData();
   // }, []);
+    if(loading) {
+      return <h2>Loading...</h2>
+    }
     
     return (
   <div>
