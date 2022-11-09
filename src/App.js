@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
+import Pagination from './components/Pagination';
 import Products from './components/Products';
 
 
@@ -13,7 +14,7 @@ function App() {
   const keys = ["title", "category"];
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(10)
+  const [productsPerPage] = useState(5)
 
   // const search = (data) => {
   //   return data.filter((product) => product.title.toLowerCase().includes(query));
@@ -32,6 +33,8 @@ const lastProductIndex = currentPage * productsPerPage
 const firstProductIndex = lastProductIndex - productsPerPage
 const currentProduct = data.slice(firstProductIndex, lastProductIndex)
 
+const paginate = pageNumber => setCurrentPage(pageNumber)
+
   const search = (data) => {
     return data.filter((item) => 
     keys.some((key) => item[key].toLowerCase().includes(query))
@@ -45,7 +48,12 @@ const currentProduct = data.slice(firstProductIndex, lastProductIndex)
     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     onChange={(e) => setQuery(e.target.value)}
      />
-   <Products data={search(data)} loading={loading} /> 
+   <Products data={search(currentProduct)} loading={loading} /> 
+   <Pagination 
+   productsPerPage={productsPerPage}
+   totalProducts={data.length}
+   paginate={paginate}
+   />
 </div>
 )
   }
