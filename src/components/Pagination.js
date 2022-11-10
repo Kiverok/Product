@@ -8,11 +8,11 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     }
     return (
         <div>
-            <ul>
+            <ul className="mt-6">
 {
     pageNumbers.map(number => (
-        <li key={number}>
-<a href="!#" onClick={() => paginate(number)}>
+        <li className="display inline ml-4 mt-4" key={number}>
+<a class="hover:border-blue-500 hover:border-solid hover:bg-white hover:text-blue-500  rounded-md border-2 border-dashed border-slate-300 text-sm  text-slate-900 font-medium py-2 px-2 " href="!#" onClick={() => paginate(number)}>
     {number}
 </a>
         </li>
